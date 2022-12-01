@@ -1,35 +1,21 @@
 def main():
-    with open('../input.txt', 'r') as f: input = f.read().split('\n')
-    print(f"Silver: {silver(input)}")
-    print(f"Gold: {gold(input)}")
+    with open('../input.txt', 'r') as f: input = f.read()
+    parsed_input = [line.split("\n") for line in input.split("\n\n")]
+    print(f"Silver: {silver(parsed_input)}")
+    print(f"Gold: {gold(parsed_input)}")
 
 def silver(input):
-    max = 0
-    temp = 0
-    for x in input:
-        if x == '':
-            if temp > max:
-                max = temp
-            temp = 0
-        else:
-            temp += int(x)
-    return max
+    def sum_strings(string_list):
+        int_list = map(lambda x : int(x), string_list)
+        return sum(int_list)
+    sums = map(sum_strings, input)
+    return sorted(sums)[-1]
 
 def gold(input):
-    max = []
-    temp = 0
-    for x in input:
-        if x == '':
-            if len(max) < 3:
-                max.append(temp)
-                max = sorted(max)
-            else:
-                if max[0] < temp:
-                    max[0] = temp
-                    max = sorted(max)
-            temp = 0
-        else:
-            temp += int(x)
-    return sum(max)
+    def sum_strings(string_list):
+        int_list = map(lambda x : int(x), string_list)
+        return sum(int_list)
+    sums = map(sum_strings, input)
+    return sum(sorted(sums)[-3:])
 
 main()
