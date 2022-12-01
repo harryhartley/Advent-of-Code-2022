@@ -7,7 +7,7 @@ fn main() {
 fn silver(input: &str) -> i32 {
     input
         .split("\n\n")
-        .map(|elf| elf.lines().map(|cals| cals.parse::<i32>().unwrap()).sum())
+        .map(|x| x.lines().map(|y| y.parse::<i32>().unwrap()).sum())
         .max()
         .unwrap_or(0)
 }
@@ -15,7 +15,7 @@ fn silver(input: &str) -> i32 {
 fn gold(input: &str) -> i32 {
     let mut totals: Vec<i32> = input
         .split("\n\n")
-        .map(|elf| elf.lines().map(|cals| cals.parse::<i32>().unwrap()).sum())
+        .map(|x| x.lines().map(|y| y.parse::<i32>().unwrap()).sum())
         .collect();
     totals.sort();
     totals.iter().rev().take(3).sum()
