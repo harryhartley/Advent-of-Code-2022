@@ -1,59 +1,18 @@
+rps = {
+    "A X": (4, 3), "A Y": (8, 4), "A Z": (3, 8),
+    "B X": (1, 1), "B Y": (5, 5), "B Z": (9, 9),
+    "C X": (7, 2), "C Y": (2, 6), "C Z": (6, 7),
+}
+
 def main():
-    with open('../input.txt', 'r') as f: input = f.read()
-    parsed_input = [line.split(' ') for line in input.split("\n")]
-    print(f"Silver: {silver(parsed_input)}")
-    print(f"Gold: {gold(parsed_input)}")
+    input = [l.strip() for l in open("../input.txt").readlines()]
+    print(f"Silver: {silver(input)}")
+    print(f"Gold: {gold(input)}")
 
 def silver(input):
-    total = 0
-    for game in input:
-        if game[1] == 'X':
-            total += 1
-            if game[0] == 'C':
-                total += 6
-            elif game[0] == 'A':
-                total += 3
-        elif game[1] == 'Y':
-            total += 2
-            if game[0] == 'A':
-                total += 6
-            elif game[0] == 'B':
-                total += 3
-        elif game[1] == 'Z':
-            total += 3
-            if game[0] == 'B':
-                total += 6
-            elif game[0] == 'C':
-                total += 3
-    return total
-
+    return sum(rps[x][0] for x in input)
 
 def gold(input):
-    total = 0
-    for game in input:
-        if game[1] == 'X':
-            if game[0] == 'C':
-                total += 2
-            elif game[0] == 'A':
-                total += 3
-            else:
-                total += 1
-        elif game[1] == 'Y':
-            total +=3
-            if game[0] == 'A':
-                total += 1
-            elif game[0] == 'B':
-                total += 2
-            else:
-                total += 3
-        elif game[1] == 'Z':
-            total += 6
-            if game[0] == 'B':
-                total += 3
-            elif game[0] == 'C':
-                total += 1
-            else:
-                total += 2
-    return total
+    return sum(rps[x][1] for x in input)
 
 main()
