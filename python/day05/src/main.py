@@ -5,15 +5,15 @@ def get_last_chars(d):
     return ''.join([v[-1] for _, v in d.items()])
 
 def main():
-    input = [l.strip("\n") for l in open("../input.txt").readlines()]
+    input = [l.strip('\n') for l in open('../input.txt').readlines()]
     state = {i+1:[] for i in range(9)}
     for x in input[:8]:
         for idx, char in enumerate(x):
             if char.isupper():
                 state[idx//4+1] = [char] + state[idx//4+1]
     instructions = map(lambda i : re.split(' from | to ', i[5:]), input[10:])
-    print(f"Silver: {silver(copy.deepcopy(state), instructions)}")
-    print(f"Gold: {gold(state, instructions)}")
+    print(f'Silver: {silver(copy.deepcopy(state), instructions)}')
+    print(f'Gold: {gold(state, instructions)}')
 
 def silver(state, instructions):
     for instruction in instructions:
