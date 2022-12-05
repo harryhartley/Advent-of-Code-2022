@@ -8,7 +8,6 @@ def main():
         for idx, char in enumerate(x):
             if char.isupper():
                 state[idx//4+1] = [char] + state[idx//4+1]
-    print(state)
     instructions = input[10:]
     # print(f"Silver: {silver(state, instructions)}")
     print(f"Gold: {gold(state, instructions)}")
