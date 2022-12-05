@@ -2,9 +2,8 @@ import re
 
 def main():
     input = [l.strip("\n") for l in open("../input.txt").readlines()]
-    crates = input[:8]
-    state = { 1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: [], 8: [], 9: []}
-    for x in crates:
+    state = {i+1:[] for i in range(9)}
+    for x in input[:8]:
         for idx, char in enumerate(x):
             if char.isupper():
                 state[idx//4+1] = [char] + state[idx//4+1]
