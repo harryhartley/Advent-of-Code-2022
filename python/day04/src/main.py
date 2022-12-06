@@ -1,6 +1,5 @@
 def main():
     input = [[list(map(lambda z: int(z), y.split('-'))) for y in x.split(',')] for x in [l.strip() for l in open("../input.txt").readlines()]]
-    print(input)
     print(f"Silver: {silver(input)}")
     print(f"Gold: {gold(input)}")
 
