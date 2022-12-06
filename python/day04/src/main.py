@@ -1,26 +1,13 @@
 def main():
-    input = [l.strip() for l in open("../input.txt").readlines()]
+    input = [[list(map(lambda z: int(z), y.split('-'))) for y in x.split(',')] for x in [l.strip() for l in open("../input.txt").readlines()]]
+    print(input)
     print(f"Silver: {silver(input)}")
     print(f"Gold: {gold(input)}")
 
 def silver(input):
-    total = 0
-    x = [l.split(',') for l in input]
-    for y in x:
-        a = y[0].split('-')
-        b = y[1].split('-')
-        if (int(a[0]) <= int(b[0]) and int(a[1]) >= int(b[1]) or int(a[0]) >= int(b[0]) and int(a[1]) <= int(b[1])):
-            total += 1
-    return total
+    return sum(x[0][0] <= x[1][0] and x[0][1] >= x[1][1] or x[0][0] >= x[1][0] and x[0][1] <= x[1][1] for x in input)
 
 def gold(input):
-    total = 0
-    x = [l.split(',') for l in input]
-    for y in x:
-        a = y[0].split('-')
-        b = y[1].split('-')
-        if not (int(a[0]) > int(b[1]) or int(a[1]) < int(b[0])):
-            total += 1
-    return total
+    return sum(x[0][0] <= x[1][1] and x[1][0] <= x[0][1] for x in input)
 
 main()
