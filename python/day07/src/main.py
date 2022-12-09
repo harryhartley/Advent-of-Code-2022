@@ -1,13 +1,12 @@
 from collections import defaultdict
 
+
 def main():
     input = [l.strip() for l in open('../input.txt').readlines()]
     sizes = defaultdict(int)
     stack = []
-    for l in input:
+    for l in input[1:]:
         match l.split():
-            case [_, _, "/"]:
-                stack = []
             case [_, _, ".."]:
                 stack.pop()
             case [_, _, x]:
