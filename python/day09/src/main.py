@@ -22,7 +22,7 @@ def traverse_grid(input):
             match direction:
                 case 'U': head = Coord(head.y + 1, head.x)
                 case 'D': head = Coord(head.y - 1, head.x)
-                case 'L': head = Coord(head.y, head.x -1)
+                case 'L': head = Coord(head.y, head.x - 1)
                 case 'R': head = Coord(head.y, head.x + 1)
             tails[0] = get_next_tail(head, tails[0])
             for i in range(1, 9):
