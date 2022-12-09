@@ -17,11 +17,9 @@ def main():
     print(f'Gold: {gold(sizes)}')
 
 def silver(sizes):
-    return sum(filter(lambda v: v <= 100000, sizes.values()))
+    return sum(filter(lambda v: v <= 100_000, sizes.values()))
 
 def gold(sizes):
-    unused = 70000000 - sizes["/"]
-    need = 30000000 - unused
-    return min(filter(lambda v: v >= need, sizes.values()))
+    return min(filter(lambda v: v >= 30_000_000 - (70_000_000 - sizes["/"]), sizes.values()))
 
 main()
