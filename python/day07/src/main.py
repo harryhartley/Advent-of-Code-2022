@@ -7,10 +7,8 @@ def main():
     stack = []
     for l in input[1:]:
         match l.split():
-            case [_, _, ".."]:
-                stack.pop()
-            case [_, _, x]:
-                stack.append(x)
+            case [_, _, ".."]: stack.pop()
+            case [_, _, x]: stack.append(x)
             case [a, _] if a.isdigit():
                 for i in range(len(stack) + 1):
                     path = "/" + "/".join(stack[:i])
