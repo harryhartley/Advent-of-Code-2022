@@ -16,7 +16,7 @@ def calc_manhattan(p1: Point, p2: Point) -> int:
 def main():
     lines = [l.strip().split(': ') for l in open('../input.txt').readlines()]
     data = list(map(lambda x: gen_sensor(x), lines))
-
+    data2 = [((z := [int(x.split(" ")[y].split("=")[1].strip(",").strip(":")) for y in [2, 3, -2, -1]])[:2], z[2:]) for x in open("../input.txt").read().splitlines()]
     print(f'Silver: {silver(data, 2_000_000)}')
     for x in range(4_000_000):
         if (result := gold(data, x)):
@@ -41,7 +41,7 @@ def silver(data, target):
             end = y
     if (start, end) not in total_range:
         total_range.append((start, end))
-    return sum(abs(x[1] - x[0]) + 1 for x in total_range) - sum([beacon.y == target for beacon in list(map(lambda x: x[1], data))])
+    return sum(abs(x[1] - x[0]) + 1 for x in total_range) - sum([beacon.y == target for beacon in set(x.beacon for x in data)])
 
 def gold(data, target):
     x_ranges = set()
